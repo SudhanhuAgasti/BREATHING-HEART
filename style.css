@@ -1,0 +1,140 @@
+  
+    :root{
+      --heart-size: 240px;   /* change heart size here */
+      --beat-scale: 1.08;    /* heartbeat intensity */
+      --beat-speed: 1.15s;   /* heartbeat speed */
+      --bg: radial-gradient(circle at 20% 20%, #1a1a2e 0%, #0f0f1a 55%, #06060c 100%);
+      --heart-gradient: linear-gradient(135deg, #ff5f6d 0%, #ffc371 100%);
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin: 0;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: #e9e9ff;
+    }
+
+    .wrap{
+      display: grid;
+      gap: 22px;
+      justify-items: center;
+      padding: 28px 18px 40px;
+    }
+
+    /* Heart */
+    .heart-shell{
+      position: relative;
+      width: var(--heart-size);
+      height: calc(var(--heart-size) * 0.9);
+      filter: drop-shadow(0 18px 40px rgba(255, 99, 132, 0.35));
+    }
+
+    .heart{
+      position: absolute;
+      inset: 0;
+      transform: rotate(-45deg);
+      background: var(--heart-gradient);
+      border-radius: 0 0 calc(var(--heart-size) * 0.09) 0;
+      animation: beat var(--beat-speed) ease-in-out infinite;
+    }
+    .heart::before,
+    .heart::after{
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: inherit; /* keep the same gradient */
+      border-radius: 50%;
+    }
+    .heart::before{ top: -50%; left: 0; }
+    .heart::after{ left: 50%; top: 0; }
+
+    /* subtle sheen */
+    .heart::marker { content: none; }
+    .heart > .sheen{
+      position: absolute;
+      inset: 0;
+      transform: rotate(45deg);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      border-radius: 24px;
+      background: radial-gradient(120px 90px at 30% 20%, rgba(255,255,255,.35), transparent 60%),
+                  radial-gradient(160px 120px at 70% 80%, rgba(255,255,255,.12), transparent 70%);
+      filter: blur(0.2px);
+    }
+
+    /* Name text sits on top, rotated back */
+    .heart-label{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      transform: scale3d();
+      padding: 12px;
+    }
+    .heart-label span{
+      text-align: center;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: clamp(22px, calc(var(--heart-size) * 0.16), 46px);
+      color: #000000;
+      text-shadow: 0 2px 0 rgba(0,0,0,.25), 0 8px 28px rgba(0,0,0,.45);
+      user-select: none;
+      white-space: pre-wrap;
+    }
+
+    @keyframes beat{
+      0%, 40%, 80%, 100% { transform: rotate(-45deg) scale(1); }
+      20% { transform: rotate(-45deg) scale(var(--beat-scale)); }
+      60% { transform: rotate(-45deg) scale(calc((var(--beat-scale) + 1) / 2)); }
+    }
+
+    /* Controls */
+    .panel{
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      backdrop-filter: blur(6px);
+      min-width: min(92vw, 540px);
+    }
+    .row{ display: grid; gap: 8px; }
+    label{ font-size: 14px; opacity: 0.9; }
+    input[type="text"]{
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      padding: 0 14px;
+      outline: none;
+    }
+    .grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    input[type="range"]{ width: 100%; }
+
+    .btns{ display: flex; gap: 10px; flex-wrap: wrap; }
+    button{
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .08s ease, background .2s ease;
+    }
+    button:hover{ background: rgba(255,255,255,0.14); }
+    button:active{ transform: translateY(1px) scale(.99); }
+    .small{ font-size: 12px; opacity: .85; }
+
+    .footer{ font-size: 12px; opacity: .6; margin-top: 6px; text-align: center; }
+  

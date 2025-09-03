@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="stylesheet" href="style.css"/>
+  <title>Heart Animation with Name</title>
+
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="heart-shell" aria-label="Beating heart with your name">
+      <div class="heart">
+        <div class="sheen" aria-hidden="true"></div>
+      </div>
+      <div class="heart-label" aria-live="polite">
+        <span id="nameText">UR NAME</span>
+      </div>
+    </div>
+
+    <div class="panel" role="group" aria-labelledby="controlsTitle">
+      <div id="controlsTitle" class="small">Customize</div>
+
+      <div class="row">
+        <label for="nameInput">Your name inside the heart</label>
+        <input id="nameInput" type="text" maxlength="32" placeholder="Type your name..." value="UR NAME" />
+      </div>
+
+      <div class="grid-2">
+        <div class="row">
+          <label for="sizeRange">Heart size (<span id="sizeVal">240</span>px)</label>
+          <input id="sizeRange" type="range" min="160" max="400" value="240" />
+        </div>
+        <div class="row">
+          <label for="speedRange">Beat speed (<span id="speedVal">1.15</span>s)</label>
+          <input id="speedRange" type="range" min="60" max="220" value="115" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="row">
+          <label for="intensityRange">Beat intensity (<span id="intensityVal">1.08</span>x)</label>
+          <input id="intensityRange" type="range" min="102" max="130" value="108" />
+        </div>
+        <div class="row">
+          <label for="styleSelect">Style</label>
+          <select id="styleSelect">
+            <option value="sunset" selected>Sunset gradient</option>
+            <option value="rose">Rose red</option>
+            <option value="candy">Candy pink</option>
+            <option value="ocean">Ocean blue</option>
+            <option value="purple">Royal purple</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button id="centerBtn" title="Center the heart on screen">Center</button>
+        <button id="copyBtn" title="Copy the heart as text (name only)">Copy Name</button>
+        <button id="resetBtn" title="Reset to defaults">Reset</button>
+      </div>
+
+      <div class="footer">Tip: You can also long-press the name text to select & copy.</div>
+    </div>
+  </div>
+<script src="script.js"></script>
+  
+</body>
+</html>
